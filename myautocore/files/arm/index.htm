@@ -57,15 +57,10 @@
 		local user_info = luci.sys.exec("cat /proc/net/arp | grep 'br-lan' | grep '0x2' | wc -l") or "0"
 		local cpu_usage = (luci.sys.exec("expr 100 - $(top -n 1 | grep 'CPU:' | awk -F '%' '{print$4}' | awk -F ' ' '{print$2}')") or "6") .. "%"
 
-		local cpu_info = luci.sys.exec("/sbin/cpuinfo") or "?"
-		local eth_info = ""
-		if not has_switch then
-			eth_info = luci.sys.exec("ethinfo")
-		end
+		local eth_info = luci.sys.exec("ethinfo")
 
 		local up_time = luci.sys.exec("cntime")
 		local rv = {
-			cpuinfo    = cpu_info,
 			cpuusage    = cpu_usage,
 			ethinfo    = eth_info,
 			userinfo    = user_info,
@@ -688,8 +683,6 @@
 			if (e = document.getElementById('cpuusage'))
 				e.innerHTML = info.cpuusage;
 
-			if (e = document.getElementById('cpuinfo'))
-				e.innerHTML = info.cpuinfo;
 
 			if (e = document.getElementById('loadavg'))
 				e.innerHTML = String.format(
@@ -751,8 +744,8 @@
 
 	<table width="100%" cellspacing="10">
 		<tr><td width="33%"><%:Hostname%></td><td><%=luci.sys.hostname() or "?"%></td></tr>
-		<tr><td width="33%"><%:Model%></td><td><%=pcdata(boardinfo.model or "?")%> <%=luci.sys.exec("cat /etc/bench.log |awk -F '.' '{print $1}'") or " "%></td></tr>
-		<tr><td width="33%"><%:CPU Info%></td><td id="cpuinfo">-</td></tr>
+		<tr><td width="33%"><%:Model%></td><td><%=pcdata(boardinfo.model or "?")%></td></tr>
+		<tr><td width="33%"><%:CPU Info%></td><td><%=luci.sys.exec("/sbin/cpuinfo") or ""%> <%=luci.sys.exec("cat /etc/bench.log |awk -F '.' '{print $1}'") or ""%></td></tr>
 		<tr><td width="33%"><%:Architecture%></td><td><%=pcdata(boardinfo.release.target or "?")%></td></tr>
 		<% if has_temp then %>
 		<tr><td width="33%"><%:CPU Temperature%></td><td><%=luci.sys.exec("/sbin/tempinfo")%></td></tr>

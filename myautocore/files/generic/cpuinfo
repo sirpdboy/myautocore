@@ -13,9 +13,9 @@ if grep -q "bcm27xx" "/etc/openwrt_release"; then
 elif grep -q "bcm53xx" "/etc/openwrt_release"; then
 	cpu_freq="$(nvram get clkfreq | awk -F ',' '{print $1}')MHz"
 elif grep -q "mvebu" "/etc/openwrt_release"; then
-	cpu_freq="$(grep "BogoMIPS" "/proc/cpuinfo" | sed -n "1p" | awk -F ': ' '{print $2}')MHz"
+	cpu_freq="$(grep "BogoMIPS" "/proc/cpuinfo" | sed -n "1p" | awk -F ': ' '{print $2}' |awk -F '.' '{print $1}')MHz"
 elif grep -q "x86" "/etc/openwrt_release"; then
-	cpu_freq="$(grep "MHz" "/proc/cpuinfo" | head -n1 | awk -F ': ' '{print $2}')MHz"
+	cpu_freq="$(grep "MHz" "/proc/cpuinfo" | head -n1 | awk -F ': ' '{print $2}' |awk -F '.' '{print $1}')MHz"
 elif [ -e "/sys/devices/system/cpu/cpufreq/policy0/cpuinfo_cur_freq" ]; then
 	cpu_freq="$(awk '{printf("%.fMHz", $0 / 1000)}' "/sys/devices/system/cpu/cpufreq/policy0/cpuinfo_cur_freq")"
 fi
