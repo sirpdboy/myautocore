@@ -12,7 +12,7 @@ do
 	c=$(echo "$a" | sed -n ${i}p)
 	d=$(ethtool $c)
 	face=$(uci show network )
-        face=$(echo "$face" | grep .ifname | grep "$c" |awk -F '.'  '{print $2}')
+        face=$(echo "$face" | grep .ifname | grep "$c" |awk -F '.'  '{print $2}' |sed -n '1p')
         n=$(ifconfig )
 	m=$(echo "$n" | grep "$c" | cut -c38-| sed "s/:/-/g" | sed "s/ //g" | sed 's/^[ \t]*//g' )
 	e=$(echo "$d" | grep "Link detected" | awk -F: '{printf $2}' | sed 's/^[ \t]*//g')
