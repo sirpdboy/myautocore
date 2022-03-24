@@ -15,7 +15,7 @@
 ## 编译使用方法 [![](https://img.shields.io/badge/-编译使用方法-F5F5F5.svg)](#编译使用方法-)
 
 
-### 将automount添加至 LEDE/OpenWRT 源码的方法。
+### 将myautocore添加至 LEDE/OpenWRT 源码的方法。
 
 ### 下载源码方法：
 
