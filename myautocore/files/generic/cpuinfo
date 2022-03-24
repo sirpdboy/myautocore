@@ -25,7 +25,7 @@ fi
 
 if [ -z "${cpu_freq}" ] ; then
 	echo -n "${cpu_arch} x ${cpu_cores}"
-elif [ grep -Eq "ipq|mt7622" "/etc/openwrt_release"; then
+elif [ grep -Eq "ipq|mt7622" "/etc/openwrt_release" ]; then
 	echo -n "${cpu_arch} x ${cpu_cores} (${cpu_freq})"
 else
 	echo -n "${cpu_arch} x ${cpu_cores} (${big_cpu_freq}${cpu_freq})"
