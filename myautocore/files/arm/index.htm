@@ -665,10 +665,10 @@
 				{
 					tmp = tmp + String.format(
 							'<td style="text-align:center"><span style="line-height:25px">%s</span><br /><small><img src="<%=resource%>/icons/%s" /><br />%s<br />%s<br />%s<br />%s</small></td>',							ports[i].face,
-							ports[i].name,
 							ports[i].status ? 'port_up.png' : 'port_down.png',
-							ports[i].speed,
+							ports[i].name,
 						    ports[i].duplex ? '<%:full-duplex%>' : '<%:half-duplex%>',
+							ports[i].speed,
 							ports[i].mac);
 
 
@@ -766,6 +766,12 @@
 		<tr><td width="33%"><%:Local Time%></td><td id="localtime">-</td></tr>
 		<tr><td width="33%"><%:Uptime%></td><td id="uptime">-</td></tr>
 		<tr><td width="33%"><%:Load Average%></td><td id="loadavg">-</td></tr>
+         <tr><td width="33%"><%:help%></td>
+			<td id="cpr">
+				<input type="button" class="cbi-button cbi-button-apply" value="<%:更新建议%>" onclick="window.open('https://github.com/sirpdboy/openwrt18.06/issues')" />
+				<input type="button" class="cbi-button cbi-button-apply" value="<%:TG聊天群%>" onclick="window.open('https://t.me/joinchat/RV6mxIxZJVDByibQ')" />
+				</td>
+			</tr>
 </table>
 </fieldset>
 
