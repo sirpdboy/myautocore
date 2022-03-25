@@ -48,7 +48,7 @@
 
 
 		local eth_info = luci.sys.exec("ethinfo")
-		local user_info = luci.sys.exec("cat /proc/net/arp | grep 'br-lan' | grep '0x2' | wc -l") or "0"
+		local user_info = luci.sys.exec("cat /proc/net/arp | grep '0x2' | wc -l") or "0"
 		local cpu_wd ="+".. (luci.sys.exec("/sbin/tempinfo")) .. "°C"
         if  cpu_wd == "+0°C" or cpu_wd == "+°C"   then
 		    cpu_wd= "+0°C （无温控或是虚拟机）"
@@ -126,7 +126,7 @@
 
 <%+header%>
 
-<script type="text/javascript" src="<%=resource%>/cbi.js?v=git-19.167.54478-71e2af4"></script>
+<script type="text/javascript" src="<%=resource%>/cbi.js"></script>
 <script type="text/javascript">//<![CDATA[
 	function progressbar(v, m)
 	{
@@ -661,7 +661,7 @@
 							'<td style="text-align:center"><span style="line-height:25px">%s</span><br /><small><img src="<%=resource%>/icons/%s" /><br />%s<br />%s<br />%s<br />%s</small></td>',							ports[i].face,
 							ports[i].status ? 'port_up.png' : 'port_down.png',
 							ports[i].name,
-							ports[i].duplex ? '<%:full-duplex%>' : '<%:half-duplex%>',
+						    ports[i].duplex ? '<%:full-duplex%>' : '<%:half-duplex%>',
 							ports[i].speed,
 							ports[i].mac);
 				};
