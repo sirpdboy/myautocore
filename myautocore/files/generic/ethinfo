@@ -2,7 +2,7 @@
 ETMP=/tmp/state_ethinfo
 a=$(ip address | grep ^[0-9] | awk -F: '{print $2}' | sed "s/ //g" | grep '^[e]' | grep -v "@" | grep -v "\.")
 b=$(echo "$a" | wc -l)
-[ -e $ETMP ] &&rm -f $ETMP
+rm -rf $ETMP
 
 echo -n "[" > $ETMP
 
