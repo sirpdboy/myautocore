@@ -39,4 +39,4 @@ sed -i 's/.$//' $ETMP
 echo -n "]" >> $ETMP
 
 cat $ETMP
-rm -f $ETMP
+rm -rf $ETMP
